@@ -62,8 +62,7 @@ public class MyShiroRealm extends AuthorizingRealm {
                 AuthBean auth = authenticationService.login(authentication);
                 this.setSession(ShiroConstants.SESSION_CURRENT_USER, auth);
                 // 查询底层角色信息
-                List<CurrentRole> roles =
-                        authenticationService.findUserRoles(authentication.getUsername());
+                List<CurrentRole> roles = authenticationService.findUserRoles(authentication.getUsername());
                 if (roles != null && !roles.isEmpty()) {
                     // 获取 多角色 第一个 角色 作为默认使用角色
                     this.setSession(ShiroConstants.SESSION_CURRENT_ROLE, roles.get(0).getCode());
